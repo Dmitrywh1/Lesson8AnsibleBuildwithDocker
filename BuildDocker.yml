@@ -18,6 +18,12 @@
       name: requests
       executable: pip2
 
+  - name: Install docker-py
+    become: true
+    pip:
+      name: docker-py
+      state: present
+
   - name: Ensure packages are present
     apt:
       name:

@@ -70,10 +70,9 @@
       name: docker-py
       state: present
 
-  - name: build container image
+  - name: Build image
     docker_image:
-      name: Test
-      build:
-        path: /home/dmitry
-      state: present
+      build: /home/dmitry/Dockerfile
+      name: Build
+      tag: latest
 

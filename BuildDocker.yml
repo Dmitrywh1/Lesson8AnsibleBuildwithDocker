@@ -1,22 +1,13 @@
-- name: Install docker on hosts
-  hosts: build
+- name: “Install docker”
+  hosts: all
   become: true
-
-  tasks:
-    - name: Install packages
-      dnf:
-        name:
-          - yum-utils
-          - device-mapper-persistent-data
-          - lvm2
-        state: present
-
-    - name: Ensure docker is present
-      yum:
-        name: docker-ce
-        state: present
-
-    - name: Ensure docker is started
-      service:
-        name: docker
-        state: started
+  vars:
+    packages:
+      - python3
+      - python3-pip
+      - python3-setuptools
+      - libselinux-python3
+   pip: packages:
+      - six
+      - docker
+      - requests

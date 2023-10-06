@@ -3,16 +3,32 @@
   become: true
   tasks:
 
-    - name: Install packages
-      yum:
+    - name: Update packages
+      apt:
+        update_cache: yes
+
+    - name: Ensure packages are present
+      apt:
         name:
-          - yum-utils
-          - device-mapper-persistent-data
-          - lvm2
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+        state: present
+
+    - name: Insert key in dockerhub
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: insert Docker repo
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
         state: present
 
     - name: Ensure docker is present
-      yum:
+      apt:
         name: docker-ce
         state: present
 

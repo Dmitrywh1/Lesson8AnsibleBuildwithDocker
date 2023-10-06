@@ -12,6 +12,12 @@
       name: python-pip
       state: present
 
+  - name: Install requests module
+    become: true
+    pip:
+      name: requests
+      executable: pip2
+
   - name: Ensure packages are present
     apt:
       name:

@@ -1,0 +1,22 @@
+- name: Install docker on hosts
+  hosts: build
+  become: true
+
+  tasks:
+    - name: Install packages
+      yum:
+        name:
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    - name: Ensure docker is present
+      yum:
+        name: docker-ce
+        state: present
+
+    - name: Ensure docker is started
+      service:
+        name: docker
+        state: started

@@ -1,38 +1,55 @@
 - name: Install docker on hosts
   hosts: all
   become: true
+
   tasks:
+  - name: Update packages
+    apt:
+      update_cache: yes
 
-    - name: Update packages
-      apt:
-        update_cache: yes
+  - name: Ensure packages are present
+    apt:
+      name:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+      state: present
 
-    - name: Ensure packages are present
-      apt:
-        name:
-          - apt-transport-https
-          - ca-certificates
-          - curl
-          - gnupg-agent
-          - software-properties-common
-        state: present
+  - name: Insert key in dockerhub
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
 
-    - name: Insert key in dockerhub
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
+  - name: insert Docker repo
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+      state: present
 
-    - name: insert Docker repo
-      apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-        state: present
+  - name: Ensure docker is present
+    apt:
+      name: docker-ce
+      state: present
 
-    - name: Ensure docker is present
-      apt:
-        name: docker-ce
-        state: present
+  - name: Ensure docker is started
+    service:
+      name: docker
+      state: started
 
-    - name: Ensure docker is started
-      service:
-        name: docker
-        state: started
+- name: Build app
+  hosts: build
+  become: true
+
+  tasks:
+  - name: Copy Dockerfile into build node
+    copy:
+      src: Dockerfile
+      dest: /home/dmitry
+
+  - name: Build image
+    docker_image:
+      path: /home/dmitry
+      name: Build
+      tag: latest
+

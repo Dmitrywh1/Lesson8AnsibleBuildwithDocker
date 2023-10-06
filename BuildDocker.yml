@@ -70,11 +70,6 @@
       name: docker-py
       state: present
 
-  - name: Install Docker on remote machine
-    apt:
-      name: docker.io
-      state: present
-
   - name: Build image
     docker_image:
       path: /home/dmitry/Dockerfile

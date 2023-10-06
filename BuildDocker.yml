@@ -7,6 +7,11 @@
     apt:
       update_cache: yes
 
+  - name: Install pip2
+    apt:
+      name: python-pip
+      state: present
+
   - name: Ensure packages are present
     apt:
       name:

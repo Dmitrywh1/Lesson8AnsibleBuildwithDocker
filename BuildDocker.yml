@@ -72,7 +72,7 @@
 
   - name: Build image
     docker_image:
-      path: /home/dmitry/Dockerfile
+      path: /home/dmitry
       name: Build
       tag: latest
 

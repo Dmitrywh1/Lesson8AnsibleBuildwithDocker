@@ -71,9 +71,5 @@
       state: present
 
   - name: Build image
-    docker_image:
-      path: /home/dmitry
-      name: Build
-      tag: latest
-    become: yes
+    command: docker build -t myimage:latest /home/dmitry
 

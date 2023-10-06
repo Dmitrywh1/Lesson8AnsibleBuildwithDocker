@@ -64,6 +64,12 @@
       src: Dockerfile
       dest: /home/dmitry
 
+  - name: Install docker-py
+    become: true
+    pip:
+      name: docker-py
+      state: present
+
   - name: Build image
     docker_image:
       path: /home/dmitry

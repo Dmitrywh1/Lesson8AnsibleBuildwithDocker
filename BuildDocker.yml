@@ -1,13 +1,22 @@
-- name: “Install docker”
+- name: Install docker on hosts
   hosts: all
   become: true
-  vars:
-    packages:
-      - python3
-      - python3-pip
-      - python3-setuptools
+  tasks:
 
-   pip: packages:
-      - six
-      - docker
-      - requests
+    - name: Install packages
+      yum:
+        name:
+          - yum-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    - name: Ensure docker is present
+      yum:
+        name: docker-ce
+        state: present
+
+    - name: Ensure docker is started
+      service:
+        name: docker
+        state: started

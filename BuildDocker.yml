@@ -34,16 +34,6 @@
         - software-properties-common
       state: present
 
-  - name: Insert key in dockerhub
-    apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
-
-  - name: insert Docker repo
-    apt_repository:
-      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-      state: present
-
   - name: Ensure docker is present
     apt:
       name: docker-ce
@@ -64,12 +54,6 @@
       src: Dockerfile
       dest: /home/dmitry
 
-  - name: Install docker-py
-    become: true
-    pip:
-      name: docker-py
-      state: present
-
   - name: Build image
     command: docker build -t buildapp /home/dmitry
 
@@ -77,7 +61,7 @@
     docker_login:
       email: morgotq@gmail.com
       username: morgotq
-      password:
+      password: Zoipolidz1.
 
   - name: Tag image with Docker Hub repository name
     command: docker tag buildapp morgotq/buildapp
@@ -85,7 +69,7 @@
   - name: Push image to Docker Hub
     command: docker push morgotq/buildapp
 
-- name: Download and run Docker container
+- name: Run application in prod
   hosts: prod
   become: true
 

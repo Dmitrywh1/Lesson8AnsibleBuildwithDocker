@@ -71,7 +71,7 @@
       state: present
 
   - name: Build image
-    command: docker build -t build /home/dmitry
+    command: docker build -t buildapp /home/dmitry
 
   - name: Login to Docker Hub
     docker_login:
@@ -80,7 +80,7 @@
       password: Zoipolidz1.
 
   - name: Tag image with Docker Hub repository name
-    command: docker tag test morgotq/build
+    command: docker tag buildapp morgotq/buildapp
 
   - name: Push image to Docker Hub
-    command: docker push morgotq/build
+    command: docker push morgotq/buildapp

@@ -77,7 +77,7 @@
     docker_login:
       email: morgotq@gmail.com
       username: morgotq
-      password: Zoipolidz1.
+      password:
 
   - name: Tag image with Docker Hub repository name
     command: docker tag buildapp morgotq/buildapp

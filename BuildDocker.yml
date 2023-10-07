@@ -99,3 +99,5 @@
       name: prod
       image: morgotq/buildapp
       state: started
+      ports:
+        - "8095:8080"

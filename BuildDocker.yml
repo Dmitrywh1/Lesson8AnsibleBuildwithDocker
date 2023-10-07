@@ -84,3 +84,18 @@
 
   - name: Push image to Docker Hub
     command: docker push morgotq/buildapp
+
+- name: Download and run Docker container
+  hosts: prod
+  become: true
+
+  tasks:
+  - name: Pull Docker image from Docker Hub
+    docker_image:
+      name: morgotq/buildapp
+      tag: latest
+  - name: Run Docker container
+    docker_container:
+      name: prod
+      image: morgotq/buildapp
+      state: started

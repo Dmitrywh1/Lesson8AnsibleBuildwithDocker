@@ -75,8 +75,8 @@
 
   - name: Login to Docker Hub
     docker_login:
-      username: morgotq
-      password: Zoipolidz1.
+      email: morgotq@gmail.com
+      password:
 
   - name: Tag image with Docker Hub repository name
     command: docker tag myimage:latest dmitry/myimage:latest

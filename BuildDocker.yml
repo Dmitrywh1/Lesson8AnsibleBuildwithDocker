@@ -73,3 +73,13 @@
   - name: Build image
     command: docker build -t myimage:latest /home/dmitry
 
+  - name: Login to Docker Hub
+    docker_login:
+      username: morgotq
+      password: Zoipolidz1.
+
+  - name: Tag image with Docker Hub repository name
+    command: docker tag myimage:latest dmitry/myimage:latest
+
+  - name: Push image to Docker Hub
+    command: docker push dmitry/myimage:latest

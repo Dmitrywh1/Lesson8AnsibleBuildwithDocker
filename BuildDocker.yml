@@ -69,7 +69,8 @@
   - name: Tag image with Docker Hub repository name
     docker_image:
       name: buildappl8
-      tag: morgotq/buildappl8
+      tag: latest
+      repository: morgotq/buildappl8
       push: yes
 
 - name: Run application in prod

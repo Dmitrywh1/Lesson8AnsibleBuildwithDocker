@@ -70,12 +70,7 @@
     docker_image:
       name: buildapp
       repository: morgotq/buildapp
-
-  - name: Share in Docker Hub
-    docker_push:
-      name: morgotq/buildapp
-      tag: latest
-      force: yes
+      push: yes
 
 - name: Run application in prod
   hosts: prod

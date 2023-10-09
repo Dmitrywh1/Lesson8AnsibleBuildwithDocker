@@ -54,7 +54,7 @@
       src: Dockerfile
       dest: /home/dmitry
 
-  - name: Build app
+  - name: Build image
     docker_image:
       path: /home/dmitry
       name: buildapp
@@ -64,15 +64,18 @@
     docker_login:
       email: morgotq@gmail.com
       username: morgotq
-      password: test
+      password: Zoipolidz1.
 
   - name: Tag image with Docker Hub repository name
     docker_image:
       name: buildapp
       repository: morgotq/buildapp
 
-  - name: Push image to Docker Hub
-    command: docker push morgotq/buildapp
+  - name: Share in Docker Hub
+    docker_image_push:
+      name: morgotq/buildapp
+      tag: latest
+      force: yes
 
 - name: Run application in prod
   hosts: prod

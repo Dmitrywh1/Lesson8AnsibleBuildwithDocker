@@ -57,7 +57,7 @@
   - name: Build image
     docker_image:
       path: /home/dmitry
-      name: buildapp
+      name: buildappl8
       tag: latest
 
   - name: Login to Docker Hub
@@ -68,7 +68,7 @@
 
   - name: Tag image with Docker Hub repository name
     docker_image:
-      name: buildapp
+      name: buildappl8
       repository: morgotq/buildapp
       push: yes
 

@@ -69,6 +69,7 @@
   - name: Tag image with Docker Hub repository name
     docker_image:
       name: buildappl8
+      tag: latest
       repository: morgotq/buildapp
       push: yes
 

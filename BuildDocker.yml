@@ -56,8 +56,7 @@
 
   - name: Build app
     docker_image:
-      build:
-        path: /home/dmitry
+      path: /home/dmitry
       name: buildapp
       tag: latest
 

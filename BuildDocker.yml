@@ -43,7 +43,7 @@
     docker_login:
       email: morgotq@gmail.com
       username: morgotq
-      password: Zoipolidz1.
+      password: a
 
   - name: Tag image with Docker Hub repository name
     docker_image:

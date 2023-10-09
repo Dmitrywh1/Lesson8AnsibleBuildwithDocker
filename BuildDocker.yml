@@ -12,31 +12,10 @@
       name: python-pip
       state: present
 
-  - name: Install requests module
-    become: true
-    pip:
-      name: requests
-      executable: pip2
-
   - name: Install docker-py
     become: true
     pip:
       name: docker-py
-      state: present
-
-  - name: Ensure packages are present
-    apt:
-      name:
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - gnupg-agent
-        - software-properties-common
-      state: present
-
-  - name: Ensure docker is present
-    apt:
-      name: docker-ce
       state: present
 
   - name: Ensure docker is started

@@ -72,7 +72,7 @@
       repository: morgotq/buildapp
 
   - name: Share in Docker Hub
-    docker_image_push:
+    docker_push:
       name: morgotq/buildapp
       tag: latest
       force: yes

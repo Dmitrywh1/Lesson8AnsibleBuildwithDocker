@@ -54,10 +54,12 @@
       src: Dockerfile
       dest: /home/dmitry
 
-  - name: Build image
-    docker_build:
-      path: /home/dmitry
-      tag: buildapp
+  - name: Build app
+    docker_image:
+      build:
+        path: /home/dmitry
+      name: buildapp
+      tag: latest
 
   - name: Login to Docker Hub
     docker_login:

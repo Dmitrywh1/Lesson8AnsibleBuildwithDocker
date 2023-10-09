@@ -55,7 +55,9 @@
       dest: /home/dmitry
 
   - name: Build image
-    command: docker build -t buildapp /home/dmitry
+    docker_build:
+      path: /home/dmitry
+      tag: buildapp
 
   - name: Login to Docker Hub
     docker_login:
@@ -64,7 +66,9 @@
       password: test
 
   - name: Tag image with Docker Hub repository name
-    command: docker tag buildapp morgotq/buildapp
+    docker_image:
+      name: buildapp
+      repository: morgotq/buildapp
 
   - name: Push image to Docker Hub
     command: docker push morgotq/buildapp

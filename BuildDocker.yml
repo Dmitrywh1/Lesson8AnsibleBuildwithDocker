@@ -80,12 +80,12 @@
   tasks:
   - name: Pull Docker image from Docker Hub
     docker_image:
-      name: morgotq/buildapp
+      name: morgotq/buildappl8
       tag: latest
   - name: Run Docker container
     docker_container:
       name: prod
-      image: morgotq/buildapp
+      image: morgotq/buildappl8
       state: started
       ports:
-        - "8095:8080"
+        - "8080:8080"
